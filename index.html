@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Become a CodeTMC Contributor 🚀</title>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: #f0f4f8;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #0f172a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 16px;
+    min-height: 100vh;
+  }
+
+  /* Form Main Wrapper */
+  .form-container {
+    width: 100%;
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* Header Card with CodeTMC Logo */
+  .header-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    border: 1px solid #e2e8f0;
+  }
+
+  .brand-logo {
+    font-size: 38px;
+    font-weight: 900;
+    letter-spacing: -1px;
+  }
+  .brand-logo .code { color: #0066cc; }
+  .brand-logo .tmc { color: #ff8c00; }
+
+  /* Hero Intro Card */
+  .hero-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    border: 1px solid #e2e8f0;
+    border-top: 8px solid #0066cc;
+  }
+
+  .hero-card h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 8px;
+  }
+
+  .hero-card .tagline {
+    display: inline-block;
+    background: #e0f2fe;
+    color: #0066cc;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+
+  .hero-card .vision-quote {
+    font-style: italic;
+    color: #ff8c00;
+    font-weight: 600;
+    border-left: 3px solid #ff8c00;
+    padding-left: 12px;
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+  }
+
+  .hero-card p {
+    font-size: 0.95rem;
+    color: #475569;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  /* Form Input Card Sections */
+  .form-section {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    border: 1px solid #e2e8f0;
+  }
+
+  .section-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .form-group {
+    margin-bottom: 22px;
+  }
+
+  .form-group:last-child {
+    margin-bottom: 0;
+  }
+
+  label.field-label {
+    display: block;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 6px;
+  }
+
+  .required {
+    color: #ef4444;
+    margin-left: 3px;
+  }
+
+  .help-text {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin-bottom: 8px;
+  }
+
+  /* Custom Inputs & Textareas */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="url"],
+  textarea {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 0.92rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    background-color: #f8fafc;
+    color: #0f172a;
+    outline: none;
+    transition: all 0.2s ease;
+  }
+
+  input:focus,
+  textarea:focus {
+    border-color: #0066cc;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 90px;
+  }
+
+  /* Custom Radio & Checkbox Styling */
+  .option-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .option-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #f8fafc;
+    font-size: 0.9rem;
+    color: #334155;
+    transition: all 0.2s ease;
+  }
+
+  .option-label:hover {
+    background-color: #eff6ff;
+    border-color: #bfdbfe;
+  }
+
+  .option-label input[type="radio"],
+  .option-label input[type="checkbox"] {
+    margin-top: 3px;
+    accent-color: #0066cc;
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Submit Button */
+  .btn-submit {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #0066cc 0%, #ff8c00 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0, 102, 204, 0.25);
+    transition: opacity 0.2s ease, transform 0.1s ease;
+  }
+
+  .btn-submit:hover {
+    opacity: 0.95;
+    transform: translateY(-1px);
+  }
+
+  /* Footer */
+  .form-footer {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #64748b;
+    margin-top: 10px;
+  }
+
+  @media (max-width: 640px) {
+    .header-card, .hero-card, .form-section {
+      padding: 20px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<form class="form-container" action="YOUR_BACKEND_OR_GOOGLE_FORM_ENDPOINT" method="POST">
+
+  <!-- Header Logo Card -->
+  <div class="header-card">
+    <div class="brand-logo">
+      <span class="code">Code</span><span class="tmc">TMC</span>
+    </div>
+  </div>
+
+  <!-- Hero Intro Card -->
+  <div class="hero-card">
+    <h1>Become a CodeTMC Contributor 🚀</h1>
+    <span class="tagline">Building a stronger tech community, one student at a time.</span>
+    
+    <div class="vision-quote">
+      "Together, we're working toward a future where Palpa is recognized as a thriving IT hub."
+    </div>
+
+    <p>CodeTMC started with a simple mission: making quality learning resources accessible to every student. Today, we're growing into something bigger—a community where students, educators, developers, designers, and innovators come together to learn, build, and create opportunities for others.</p>
+    
+    <p>Whether you're passionate about teaching, mentoring, developing software, creating content, designing visuals, organizing events, or simply giving back to the community, there's a place for you here.</p>
+
+    <p>Every contribution—big or small—helps us move one step closer to our shared vision of making Palpa a thriving hub for technology, innovation, and student-led growth.</p>
+  </div>
+
+  <!-- Section 1: Personal Details -->
+  <div class="form-section">
+    <div class="section-title">👤 Personal Details</div>
+
+    <div class="form-group">
+      <label class="field-label" for="fullname">Full Name <span class="required">*</span></label>
+      <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+    </div>
+
+    <div class="form-group">
+      <label class="field-label" for="email">Email Address <span class="required">*</span></label>
+      <input type="email" id="email" name="email" placeholder="name@example.com" required>
+    </div>
+
+    <div class="form-group">
+      <label class="field-label" for="phone">WhatsApp / Phone Number <span class="required">*</span></label>
+      <input type="tel" id="phone" name="phone" placeholder="+977 98XXXXXXXX" required>
+    </div>
+  </div>
+
+  <!-- Section 2: Role & Contribution -->
+  <div class="form-section">
+    <div class="section-title">💼 Role & Contribution</div>
+
+    <div class="form-group">
+      <label class="field-label">What's your current role? <span class="required">*</span></label>
+      <div class="option-group">
+        <label class="option-label">
+          <input type="radio" name="role" value="Instructor / Faculty Member" required>
+          <span>🧑‍🏫 Instructor / Faculty Member</span>
+        </label>
+        <label class="option-label">
+          <input type="radio" name="role" value="Current Student">
+          <span>💻 Current Student</span>
+        </label>
+        <label class="option-label">
+          <input type="radio" name="role" value="IT Professional">
+          <span>🚀 IT Professional</span>
+        </label>
+        <label class="option-label">
+          <input type="radio" name="role" value="Industry Partner">
+          <span>🏢 Industry Partner</span>
+        </label>
+        <label class="option-label">
+          <input type="radio" name="role" value="Community Volunteer">
+          <span>❤️ Community Volunteer</span>
+        </label>
+        <label class="option-label">
+          <input type="radio" name="role" value="Other">
+          <span>✨ Other</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="field-label">Which areas would you like to contribute to? <span class="required">*</span></label>
+      <div class="option-group">
+        <label class="option-label">
+          <input type="checkbox" name="contribution[]" value="Content & Academics">
+          <span><strong>📚 Content & Academics:</strong> Contributing notes, lab reports, assignments, or verifying resource accuracy.</span>
+        </label>
+        <label class="option-label">
+          <input type="checkbox" name="contribution[]" value="Mentorship & Teaching">
+          <span><strong>🧠 Mentorship & Teaching:</strong> Conducting workshops, bootcamps, or reviewing code for juniors.</span>
+        </label>
+        <label class="option-label">
+          <input type="checkbox" name="contribution[]" value="Technical & Development">
+          <span><strong>🛠️ Technical & Development:</strong> Building/maintaining our website, handling databases, or feature requests.</span>
+        </label>
+        <label class="option-label">
+          <input type="checkbox" name="contribution[]" value="Design & Media">
+          <span><strong>🎨 Design & Media:</strong> Creating banners, graphics, video editing, or managing social media handles.</span>
+        </label>
+        <label class="option-label">
+          <input type="checkbox" name="contribution[]" value="Community & Operations">
+          <span><strong>📢 Community & Operations:</strong> Managing communication groups, organizing events, or handling campus outreach.</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: Skills & Alignment -->
+  <div class="form-section">
+    <div class="section-title">⚙️ Skills & Alignment</div>
+
+    <div class="form-group">
+      <label class="field-label" for="skills">What specific tools, languages, or skills are you comfortable with? <span class="required">*</span></label>
+      <div class="help-text">e.g., C, HTML/CSS, Git, GIMP, UI/UX Design, Content Writing, Public Speaking, etc.</div>
+      <input type="text" id="skills" name="skills" placeholder="List your key skills..." required>
+    </div>
+
+    <div class="form-group">
+      <label class="field-label" for="motivation">Why do you want to join the CodeTMC movement? <span class="required">*</span></label>
+      <div class="help-text">What gets you excited about making Palpa a tech hub?</div>
+      <textarea id="motivation" name="motivation" placeholder="Share your thoughts..." required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label class="field-label" for="portfolio">Link to your Portfolio / GitHub / LinkedIn</label>
+      <input type="url" id="portfolio" name="portfolio" placeholder="https://github.com/yourusername">
+    </div>
+
+    <div class="form-group">
+      <label class="field-label" for="experience">Tell us about any projects, clubs, communities, or experiences you've worked on.</label>
+      <textarea id="experience" name="experience" placeholder="Briefly describe your previous experience..."></textarea>
+    </div>
+
+    <div class="form-group">
+      <label class="field-label" for="anything_else">Anything else?</label>
+      <input type="text" id="anything_else" name="anything_else" placeholder="Any questions or notes for the team...">
+    </div>
+  </div>
+
+  <!-- Section 4: Agreement -->
+  <div class="form-section">
+    <div class="section-title">📜 Agreement</div>
+
+    <div class="form-group">
+      <label class="option-label" style="background: #eff6ff; border-color: #bfdbfe;">
+        <input type="checkbox" name="agreement" required>
+        <span>I understand that joining CodeTMC is voluntary and community-driven. I agree to communicate respectfully and contribute positively to the community. <span class="required">*</span></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Submit Button -->
+  <button type="submit" class="btn-submit">Submit Application →</button>
+
+  <div class="form-footer">
+    CodeTMC — Student-Led Educational Initiative
+  </div>
+
+</form>
+
+</body>
+</html>
