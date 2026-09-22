@@ -243,7 +243,7 @@
 </head>
 <body>
 
-<form class="form-container" action="https://formspree.io/f/myezwdrd" method="POST">
+<form class="form-container" action="https://script.google.com/macros/s/AKfycbxi5T34Z5IMuc6yjAt02MN0mWk425TyxtMzjliUDEjDU4iHBxYG4fiVdJkYxmiqZ1b7WA/exec" method="POST">
 
   <!-- Header Logo Card -->
   <div class="header-card">
@@ -401,6 +401,39 @@
   </div>
 
 </form>
+<script>
+  const form = document.querySelector('.form-container');
+  const submitBtn = document.querySelector('.btn-submit');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault(); // Stop page reload
+    
+    submitBtn.disabled = true;
+    submitBtn.innerText = 'Submitting Application...';
+
+    // Replace with your copied Google Apps Script Web App URL
+    const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+
+    const formData = new FormData(form);
+
+    fetch(scriptURL, {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => {
+      alert('Success! Your application has been submitted to CodeTMC.');
+      form.reset();
+      submitBtn.disabled = false;
+      submitBtn.innerText = 'Submit Application →';
+    })
+    .catch(error => {
+      console.error('Error!', error.message);
+      alert('Submission failed. Please check your internet connection or try again.');
+      submitBtn.disabled = false;
+      submitBtn.innerText = 'Submit Application →';
+    });
+  });
+</script>
 
 </body>
 </html>
