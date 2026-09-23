@@ -7,7 +7,6 @@
 <style>
   :root {
     --primary: #0066cc;
-    --primary-hover: #0052a3;
     --secondary: #ff8c00;
     --dark: #0f172a;
     --slate: #475569;
@@ -46,7 +45,6 @@
     position: relative;
   }
 
-  /* Top Branding Header */
   .brand-header {
     background: #ffffff;
     padding: 24px 32px 16px;
@@ -75,7 +73,6 @@
     letter-spacing: 0.5px;
   }
 
-  /* Progress Bar Header */
   .progress-bar-container {
     height: 6px;
     background: #e2e8f0;
@@ -89,12 +86,10 @@
     transition: width 0.4s ease;
   }
 
-  /* Form Container */
   form {
     padding: 32px;
   }
 
-  /* Steps Control */
   .form-step {
     display: none;
     animation: fadeIn 0.35s ease forwards;
@@ -109,7 +104,6 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* Step Headings */
   .step-header {
     margin-bottom: 24px;
   }
@@ -130,7 +124,6 @@
     line-height: 1.5;
   }
 
-  /* Form Groups & Inputs */
   .form-group {
     margin-bottom: 22px;
   }
@@ -143,9 +136,7 @@
     margin-bottom: 8px;
   }
 
-  .required {
-    color: #ef4444;
-  }
+  .required { color: #ef4444; }
 
   .help-text {
     font-size: 0.8rem;
@@ -169,28 +160,21 @@
     transition: all 0.2s ease;
   }
 
-  input:focus,
-  textarea:focus {
+  input:focus, textarea:focus {
     border-color: var(--primary);
     background-color: #ffffff;
     box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.12);
   }
 
-  textarea {
-    min-height: 100px;
-    resize: vertical;
-  }
+  textarea { min-height: 100px; resize: vertical; }
 
-  /* Interactive Option Cards (Radio & Checkbox) */
   .grid-options {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
   }
 
-  .grid-options.single-col {
-    grid-template-columns: 1fr;
-  }
+  .grid-options.single-col { grid-template-columns: 1fr; }
 
   .card-option {
     position: relative;
@@ -240,7 +224,14 @@
     display: block;
   }
 
-  /* Action Buttons Navigation */
+  .error-msg {
+    color: #ef4444;
+    font-size: 0.82rem;
+    font-weight: 600;
+    margin-top: 6px;
+    display: none;
+  }
+
   .button-nav {
     display: flex;
     justify-content: space-between;
@@ -263,10 +254,7 @@
     gap: 8px;
   }
 
-  .btn-prev {
-    background: #f1f5f9;
-    color: var(--slate);
-  }
+  .btn-prev { background: #f1f5f9; color: var(--slate); }
   .btn-prev:hover { background: #e2e8f0; }
 
   .btn-next, .btn-submit {
@@ -274,16 +262,11 @@
     color: #ffffff;
     box-shadow: 0 4px 12px rgba(0, 102, 204, 0.25);
   }
-  .btn-next:hover, .btn-submit:hover {
-    opacity: 0.95;
-    transform: translateY(-1px);
-  }
 
-  .btn-submit {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-  }
+  .btn-next:hover, .btn-submit:hover { opacity: 0.95; transform: translateY(-1px); }
 
-  /* Custom Confirmation Modal */
+  .btn-submit { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); }
+
   .modal-overlay {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -306,24 +289,11 @@
     animation: fadeIn 0.3s ease;
   }
 
-  .modal-icon {
-    font-size: 50px;
-    margin-bottom: 16px;
-  }
+  .modal-icon { font-size: 50px; margin-bottom: 16px; }
 
-  .modal-card h3 {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--dark);
-    margin-bottom: 10px;
-  }
+  .modal-card h3 { font-size: 1.5rem; font-weight: 800; color: var(--dark); margin-bottom: 10px; }
 
-  .modal-card p {
-    font-size: 0.95rem;
-    color: var(--slate);
-    line-height: 1.5;
-    margin-bottom: 24px;
-  }
+  .modal-card p { font-size: 0.95rem; color: var(--slate); line-height: 1.5; margin-bottom: 24px; }
 
   @media (max-width: 640px) {
     .grid-options { grid-template-columns: 1fr; }
@@ -336,7 +306,6 @@
 
 <div class="portal-card">
   
-  <!-- Header Branding -->
   <div class="brand-header">
     <div class="brand-logo">
       <span class="code">Code</span><span class="tmc">TMC</span>
@@ -344,14 +313,13 @@
     <span class="badge-community">Join Movement</span>
   </div>
 
-  <!-- Dynamic Progress Bar -->
   <div class="progress-bar-container">
     <div class="progress-bar" id="progressBar"></div>
   </div>
 
   <form id="contributorForm">
 
-    <!-- STEP 1: Vision & Introduction -->
+    <!-- STEP 1: Personal Info -->
     <div class="form-step active" data-step="1">
       <div class="step-header">
         <h2>🚀 Become a CodeTMC Contributor</h2>
@@ -360,7 +328,7 @@
 
       <div class="form-group">
         <label class="field-label" for="fullname">Full Name <span class="required">*</span></label>
-        <input type="text" id="fullname" name="fullname" placeholder="e.g. Poshan Gaire" required>
+        <input type="text" id="fullname" name="fullname" placeholder="e.g. Arjun Paudel" required>
       </div>
 
       <div class="form-group">
@@ -374,7 +342,7 @@
       </div>
     </div>
 
-    <!-- STEP 2: Role & Area Selection -->
+    <!-- STEP 2: Role & Contribution -->
     <div class="form-step" data-step="2">
       <div class="step-header">
         <h2>💼 Role & Contribution</h2>
@@ -386,34 +354,26 @@
         <div class="grid-options">
           <label class="card-option">
             <input type="radio" name="role" value="Instructor / Faculty Member" required>
-            <div>
-              <span class="option-title">🧑‍🏫 Faculty / Instructor</span>
-            </div>
+            <div><span class="option-title">🧑‍🏫 Faculty / Instructor</span></div>
           </label>
           <label class="card-option">
             <input type="radio" name="role" value="Current Student">
-            <div>
-              <span class="option-title">💻 Student</span>
-            </div>
+            <div><span class="option-title">💻 Student</span></div>
           </label>
           <label class="card-option">
             <input type="radio" name="role" value="IT Professional">
-            <div>
-              <span class="option-title">🚀 IT Professional</span>
-            </div>
+            <div><span class="option-title">🚀 IT Professional</span></div>
           </label>
           <label class="card-option">
             <input type="radio" name="role" value="Community Volunteer">
-            <div>
-              <span class="option-title">❤️ Volunteer</span>
-            </div>
+            <div><span class="option-title">❤️ Volunteer</span></div>
           </label>
         </div>
       </div>
 
       <div class="form-group">
         <label class="field-label">Which areas would you like to contribute to? <span class="required">*</span></label>
-        <div class="grid-options single-col">
+        <div class="grid-options single-col" id="contributionGroup">
           <label class="card-option">
             <input type="checkbox" name="contribution" value="Content & Academics">
             <div>
@@ -443,10 +403,11 @@
             </div>
           </label>
         </div>
+        <div class="error-msg" id="contributionError">Please select at least one area of contribution.</div>
       </div>
     </div>
 
-    <!-- STEP 3: Skills & Experience -->
+    <!-- STEP 3: Skills & Motivation -->
     <div class="form-step" data-step="3">
       <div class="step-header">
         <h2>⚙️ Skills & Alignment</h2>
@@ -494,7 +455,7 @@
       </div>
     </div>
 
-    <!-- Navigation Bar -->
+    <!-- Buttons -->
     <div class="button-nav">
       <button type="button" class="btn btn-prev" id="prevBtn" style="visibility: hidden;">← Back</button>
       <button type="button" class="btn btn-next" id="nextBtn">Continue →</button>
@@ -504,7 +465,7 @@
   </form>
 </div>
 
-<!-- Custom Success Modal -->
+<!-- Modal -->
 <div class="modal-overlay" id="successModal">
   <div class="modal-card">
     <div class="modal-icon">🎉</div>
@@ -524,10 +485,9 @@
   const progressBar = document.getElementById('progressBar');
   const form = document.getElementById('contributorForm');
 
-  // Script URL for Google Apps Script Web App
   const scriptURL = 'https://script.google.com/macros/s/AKfycbxi5T34Z5IMuc6yjAt02MN0mWk425TyxtMzjliUDEjDU4iHBxYG4fiVdJkYxmiqZ1b7WA/exec';
 
-  // Highlight Card Options when Selected
+  // Highlight Selection Cards
   document.querySelectorAll('.card-option input').forEach(input => {
     input.addEventListener('change', () => {
       if (input.type === 'radio') {
@@ -540,10 +500,15 @@
       } else {
         input.closest('.card-option').classList.remove('selected');
       }
+      
+      // Hide error once checked
+      if (input.name === 'contribution') {
+        document.getElementById('contributionError').style.display = 'none';
+      }
     });
   });
 
-  // Step Navigation Logic
+  // Navigation Logic
   nextBtn.addEventListener('click', () => {
     if (validateStep(currentStep)) {
       currentStep++;
@@ -560,10 +525,8 @@
     document.querySelectorAll('.form-step').forEach(step => step.classList.remove('active'));
     document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.add('active');
 
-    // Update Progress Bar
     progressBar.style.width = `${(currentStep / totalSteps) * 100}%`;
 
-    // Button States
     prevBtn.style.visibility = currentStep === 1 ? 'hidden' : 'visible';
 
     if (currentStep === totalSteps) {
@@ -577,30 +540,45 @@
 
   function validateStep(step) {
     const currentStepContainer = document.querySelector(`.form-step[data-step="${step}"]`);
+    
+    // Check standard inputs
     const inputs = currentStepContainer.querySelectorAll('input[required], textarea[required]');
-
     for (let input of inputs) {
       if (!input.checkValidity()) {
         input.reportValidity();
         return false;
       }
     }
+
+    // Explicit Checkbox Group Validation for Step 2
+    if (step === 2) {
+      const checkedContributions = currentStepContainer.querySelectorAll('input[name="contribution"]:checked');
+      if (checkedContributions.length === 0) {
+        document.getElementById('contributionError').style.display = 'block';
+        return false;
+      } else {
+        document.getElementById('contributionError').style.display = 'none';
+      }
+    }
+
     return true;
   }
 
-  // Submit Handler
+  // Form Submission
   form.addEventListener('submit', function(e) {
     e.preventDefault();
 
     submitBtn.disabled = true;
     submitBtn.innerText = 'Submitting...';
 
-    // Collect multiple checkbox contributions as a comma-separated string
     const formData = new FormData(form);
-    const contributions = Array.from(document.querySelectorAll('input[name="contribution"]:checked'))
-                                .map(cb => cb.value)
-                                .join(', ');
-    formData.set('contribution', contributions);
+    
+    // Explicitly send all selected contribution checkboxes as separate items
+    formData.delete('contribution');
+    const checkedContributions = document.querySelectorAll('input[name="contribution"]:checked');
+    checkedContributions.forEach(cb => {
+      formData.append('contribution', cb.value);
+    });
 
     fetch(scriptURL, {
       method: 'POST',
