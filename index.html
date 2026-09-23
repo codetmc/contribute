@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Become a CodeTMC Contributor 🚀</title>
 <style>
+  :root {
+    --primary: #0066cc;
+    --primary-hover: #0052a3;
+    --secondary: #ff8c00;
+    --dark: #0f172a;
+    --slate: #475569;
+    --light-bg: #f8fafc;
+    --border: #e2e8f0;
+    --card-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.05), 0 8px 10px -6px rgba(15, 23, 42, 0.01);
+  }
+
   * {
     box-sizing: border-box;
     margin: 0;
@@ -12,425 +23,597 @@
   }
 
   body {
-    background-color: #f0f4f8;
+    background: #f1f5f9;
+    background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+    background-size: 24px 24px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    color: #0f172a;
+    color: var(--dark);
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    padding: 30px 16px;
     min-height: 100vh;
+    padding: 24px 16px;
   }
 
-  /* Form Main Wrapper */
-  .form-container {
+  .portal-card {
     width: 100%;
-    max-width: 720px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    max-width: 760px;
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
   }
 
-  /* Header Card with CodeTMC Logo */
-  .header-card {
+  /* Top Branding Header */
+  .brand-header {
     background: #ffffff;
-    border-radius: 16px;
-    padding: 32px;
-    text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
-    border: 1px solid #e2e8f0;
+    padding: 24px 32px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
   }
 
   .brand-logo {
-    font-size: 38px;
+    font-size: 28px;
     font-weight: 900;
-    letter-spacing: -1px;
+    letter-spacing: -0.5px;
   }
-  .brand-logo .code { color: #0066cc; }
-  .brand-logo .tmc { color: #ff8c00; }
+  .brand-logo .code { color: var(--primary); }
+  .brand-logo .tmc { color: var(--secondary); }
 
-  /* Hero Intro Card */
-  .hero-card {
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 32px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
-    border: 1px solid #e2e8f0;
-    border-top: 8px solid #0066cc;
-  }
-
-  .hero-card h1 {
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: #0f172a;
-    margin-bottom: 8px;
-  }
-
-  .hero-card .tagline {
-    display: inline-block;
+  .badge-community {
     background: #e0f2fe;
-    color: #0066cc;
-    font-weight: 700;
-    font-size: 0.85rem;
-    padding: 4px 12px;
-    border-radius: 20px;
-    margin-bottom: 16px;
-  }
-
-  .hero-card .vision-quote {
-    font-style: italic;
-    color: #ff8c00;
-    font-weight: 600;
-    border-left: 3px solid #ff8c00;
-    padding-left: 12px;
-    margin-bottom: 16px;
-    font-size: 0.95rem;
-  }
-
-  .hero-card p {
-    font-size: 0.95rem;
-    color: #475569;
-    line-height: 1.6;
-    margin-bottom: 12px;
-  }
-
-  /* Form Input Card Sections */
-  .form-section {
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 28px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
-    border: 1px solid #e2e8f0;
-  }
-
-  .section-title {
-    font-size: 1.25rem;
+    color: var(--primary);
+    font-size: 0.75rem;
     font-weight: 800;
-    color: #0f172a;
-    margin-bottom: 20px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #e2e8f0;
+    padding: 6px 14px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Progress Bar Header */
+  .progress-bar-container {
+    height: 6px;
+    background: #e2e8f0;
+    width: 100%;
+  }
+
+  .progress-bar {
+    height: 100%;
+    width: 25%;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+    transition: width 0.4s ease;
+  }
+
+  /* Form Container */
+  form {
+    padding: 32px;
+  }
+
+  /* Steps Control */
+  .form-step {
+    display: none;
+    animation: fadeIn 0.35s ease forwards;
+  }
+
+  .form-step.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Step Headings */
+  .step-header {
+    margin-bottom: 24px;
+  }
+
+  .step-header h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--dark);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
   }
 
+  .step-header p {
+    font-size: 0.92rem;
+    color: var(--slate);
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+
+  /* Form Groups & Inputs */
   .form-group {
     margin-bottom: 22px;
   }
 
-  .form-group:last-child {
-    margin-bottom: 0;
-  }
-
   label.field-label {
     display: block;
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     font-weight: 700;
     color: #1e293b;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
 
   .required {
     color: #ef4444;
-    margin-left: 3px;
   }
 
   .help-text {
     font-size: 0.8rem;
-    color: #64748b;
+    color: var(--slate);
     margin-bottom: 8px;
   }
 
-  /* Custom Inputs & Textareas */
   input[type="text"],
   input[type="email"],
   input[type="tel"],
   input[type="url"],
   textarea {
     width: 100%;
-    padding: 12px 16px;
-    font-size: 0.92rem;
-    border: 1px solid #cbd5e1;
-    border-radius: 10px;
-    background-color: #f8fafc;
-    color: #0f172a;
+    padding: 14px 18px;
+    font-size: 0.95rem;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 12px;
+    background-color: var(--light-bg);
+    color: var(--dark);
     outline: none;
     transition: all 0.2s ease;
   }
 
   input:focus,
   textarea:focus {
-    border-color: #0066cc;
+    border-color: var(--primary);
     background-color: #ffffff;
-    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
+    box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.12);
   }
 
   textarea {
+    min-height: 100px;
     resize: vertical;
-    min-height: 90px;
   }
 
-  /* Custom Radio & Checkbox Styling */
-  .option-group {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 8px;
+  /* Interactive Option Cards (Radio & Checkbox) */
+  .grid-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 
-  .option-label {
+  .grid-options.single-col {
+    grid-template-columns: 1fr;
+  }
+
+  .card-option {
+    position: relative;
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    padding: 12px 16px;
-    border: 1px solid #e2e8f0;
-    border-radius: 10px;
-    cursor: pointer;
-    background: #f8fafc;
-    font-size: 0.9rem;
-    color: #334155;
-    transition: all 0.2s ease;
-  }
-
-  .option-label:hover {
-    background-color: #eff6ff;
-    border-color: #bfdbfe;
-  }
-
-  .option-label input[type="radio"],
-  .option-label input[type="checkbox"] {
-    margin-top: 3px;
-    accent-color: #0066cc;
-    width: 16px;
-    height: 16px;
-  }
-
-  /* Submit Button */
-  .btn-submit {
-    width: 100%;
     padding: 16px;
-    background: linear-gradient(135deg, #0066cc 0%, #ff8c00 100%);
-    color: #ffffff;
-    border: none;
-    border-radius: 12px;
-    font-size: 1.05rem;
-    font-weight: 800;
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    background: #ffffff;
     cursor: pointer;
-    box-shadow: 0 8px 20px rgba(0, 102, 204, 0.25);
-    transition: opacity 0.2s ease, transform 0.1s ease;
+    transition: all 0.2s ease;
+    user-select: none;
   }
 
-  .btn-submit:hover {
+  .card-option:hover {
+    border-color: #93c5fd;
+    background: #f0f9ff;
+    transform: translateY(-1px);
+  }
+
+  .card-option input {
+    margin-top: 3px;
+    accent-color: var(--primary);
+    width: 18px;
+    height: 18px;
+  }
+
+  .card-option.selected {
+    border-color: var(--primary);
+    background: #eff6ff;
+    box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
+  }
+
+  .option-title {
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--dark);
+    display: block;
+  }
+
+  .option-desc {
+    font-size: 0.82rem;
+    color: var(--slate);
+    margin-top: 4px;
+    line-height: 1.4;
+    display: block;
+  }
+
+  /* Action Buttons Navigation */
+  .button-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .btn {
+    padding: 12px 26px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-prev {
+    background: #f1f5f9;
+    color: var(--slate);
+  }
+  .btn-prev:hover { background: #e2e8f0; }
+
+  .btn-next, .btn-submit {
+    background: linear-gradient(135deg, var(--primary) 0%, #1d4ed8 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.25);
+  }
+  .btn-next:hover, .btn-submit:hover {
     opacity: 0.95;
     transform: translateY(-1px);
   }
 
-  /* Footer */
-  .form-footer {
+  .btn-submit {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  }
+
+  /* Custom Confirmation Modal */
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .modal-card {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 24px;
+    max-width: 480px;
+    width: 90%;
     text-align: center;
-    font-size: 0.8rem;
-    color: #64748b;
-    margin-top: 10px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    animation: fadeIn 0.3s ease;
+  }
+
+  .modal-icon {
+    font-size: 50px;
+    margin-bottom: 16px;
+  }
+
+  .modal-card h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+
+  .modal-card p {
+    font-size: 0.95rem;
+    color: var(--slate);
+    line-height: 1.5;
+    margin-bottom: 24px;
   }
 
   @media (max-width: 640px) {
-    .header-card, .hero-card, .form-section {
-      padding: 20px;
-    }
+    .grid-options { grid-template-columns: 1fr; }
+    form { padding: 20px; }
+    .brand-header { padding: 20px; }
   }
 </style>
 </head>
 <body>
 
-<form class="form-container" action="https://script.google.com/macros/s/AKfycbxi5T34Z5IMuc6yjAt02MN0mWk425TyxtMzjliUDEjDU4iHBxYG4fiVdJkYxmiqZ1b7WA/exec" method="POST">
-
-  <!-- Header Logo Card -->
-  <div class="header-card">
+<div class="portal-card">
+  
+  <!-- Header Branding -->
+  <div class="brand-header">
     <div class="brand-logo">
       <span class="code">Code</span><span class="tmc">TMC</span>
     </div>
+    <span class="badge-community">Join Movement</span>
   </div>
 
-  <!-- Hero Intro Card -->
-  <div class="hero-card">
-    <h1>Become a CodeTMC Contributor 🚀</h1>
-    <span class="tagline">Building a stronger tech community, one student at a time.</span>
-    
-    <div class="vision-quote">
-      "Together, we're working toward a future where Palpa is recognized as a thriving IT hub."
-    </div>
-
-    <p>CodeTMC started with a simple mission: making quality learning resources accessible to every student. Today, we're growing into something bigger—a community where students, educators, developers, designers, and innovators come together to learn, build, and create opportunities for others.</p>
-    
-    <p>Whether you're passionate about teaching, mentoring, developing software, creating content, designing visuals, organizing events, or simply giving back to the community, there's a place for you here.</p>
-
-    <p>Every contribution—big or small—helps us move one step closer to our shared vision of making Palpa a thriving hub for technology, innovation, and student-led growth.</p>
+  <!-- Dynamic Progress Bar -->
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progressBar"></div>
   </div>
 
-  <!-- Section 1: Personal Details -->
-  <div class="form-section">
-    <div class="section-title">👤 Personal Details</div>
+  <form id="contributorForm">
 
-    <div class="form-group">
-      <label class="field-label" for="fullname">Full Name <span class="required">*</span></label>
-      <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+    <!-- STEP 1: Vision & Introduction -->
+    <div class="form-step active" data-step="1">
+      <div class="step-header">
+        <h2>🚀 Become a CodeTMC Contributor</h2>
+        <p>Building a stronger tech community in Palpa, one student at a time. Join us in making quality education and practical resources accessible to all.</p>
+      </div>
+
+      <div class="form-group">
+        <label class="field-label" for="fullname">Full Name <span class="required">*</span></label>
+        <input type="text" id="fullname" name="fullname" placeholder="e.g. Poshan Gaire" required>
+      </div>
+
+      <div class="form-group">
+        <label class="field-label" for="email">Email Address <span class="required">*</span></label>
+        <input type="email" id="email" name="email" placeholder="name@example.com" required>
+      </div>
+
+      <div class="form-group">
+        <label class="field-label" for="phone">WhatsApp / Phone Number <span class="required">*</span></label>
+        <input type="tel" id="phone" name="phone" placeholder="+977 98XXXXXXXX" required>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label class="field-label" for="email">Email Address <span class="required">*</span></label>
-      <input type="email" id="email" name="email" placeholder="name@example.com" required>
+    <!-- STEP 2: Role & Area Selection -->
+    <div class="form-step" data-step="2">
+      <div class="step-header">
+        <h2>💼 Role & Contribution</h2>
+        <p>Tell us who you are and where you'd like to leave your mark in CodeTMC.</p>
+      </div>
+
+      <div class="form-group">
+        <label class="field-label">What's your current role? <span class="required">*</span></label>
+        <div class="grid-options">
+          <label class="card-option">
+            <input type="radio" name="role" value="Instructor / Faculty Member" required>
+            <div>
+              <span class="option-title">🧑‍🏫 Faculty / Instructor</span>
+            </div>
+          </label>
+          <label class="card-option">
+            <input type="radio" name="role" value="Current Student">
+            <div>
+              <span class="option-title">💻 Student</span>
+            </div>
+          </label>
+          <label class="card-option">
+            <input type="radio" name="role" value="IT Professional">
+            <div>
+              <span class="option-title">🚀 IT Professional</span>
+            </div>
+          </label>
+          <label class="card-option">
+            <input type="radio" name="role" value="Community Volunteer">
+            <div>
+              <span class="option-title">❤️ Volunteer</span>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="field-label">Which areas would you like to contribute to? <span class="required">*</span></label>
+        <div class="grid-options single-col">
+          <label class="card-option">
+            <input type="checkbox" name="contribution" value="Content & Academics">
+            <div>
+              <span class="option-title">📚 Content & Academics</span>
+              <span class="option-desc">Contributing notes, lab reports, past question analysis, or verifying accuracy.</span>
+            </div>
+          </label>
+          <label class="card-option">
+            <input type="checkbox" name="contribution" value="Mentorship & Teaching">
+            <div>
+              <span class="option-title">🧠 Mentorship & Teaching</span>
+              <span class="option-desc">Conducting bootcamps, workshops, or reviewing code for juniors.</span>
+            </div>
+          </label>
+          <label class="card-option">
+            <input type="checkbox" name="contribution" value="Technical & Development">
+            <div>
+              <span class="option-title">🛠️ Technical & Development</span>
+              <span class="option-desc">Building & maintaining web platforms, GitHub repos, or tools.</span>
+            </div>
+          </label>
+          <label class="card-option">
+            <input type="checkbox" name="contribution" value="Design & Media">
+            <div>
+              <span class="option-title">🎨 Design & Media</span>
+              <span class="option-desc">Creating banners, social media graphics, video edits, or UI assets.</span>
+            </div>
+          </label>
+        </div>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label class="field-label" for="phone">WhatsApp / Phone Number <span class="required">*</span></label>
-      <input type="tel" id="phone" name="phone" placeholder="+977 98XXXXXXXX" required>
+    <!-- STEP 3: Skills & Experience -->
+    <div class="form-step" data-step="3">
+      <div class="step-header">
+        <h2>⚙️ Skills & Alignment</h2>
+        <p>Share your technical toolkit and what drives your passion for building an IT ecosystem.</p>
+      </div>
+
+      <div class="form-group">
+        <label class="field-label" for="skills">Tools, Languages, or Skills <span class="required">*</span></label>
+        <div class="help-text">e.g., C, C++, Next.js, Git, GIMP, UI/UX, Content Writing</div>
+        <input type="text" id="skills" name="skills" placeholder="List your key technical skills..." required>
+      </div>
+
+      <div class="form-group">
+        <label class="field-label" for="motivation">Why do you want to join CodeTMC? <span class="required">*</span></label>
+        <div class="help-text">What gets you excited about transforming Palpa into an IT hub?</div>
+        <textarea id="motivation" name="motivation" placeholder="Share your motivation..." required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="field-label" for="portfolio">Portfolio / GitHub / LinkedIn Link</label>
+        <input type="url" id="portfolio" name="portfolio" placeholder="https://github.com/yourusername">
+      </div>
     </div>
-  </div>
 
-  <!-- Section 2: Role & Contribution -->
-  <div class="form-section">
-    <div class="section-title">💼 Role & Contribution</div>
+    <!-- STEP 4: Review & Agreement -->
+    <div class="form-step" data-step="4">
+      <div class="step-header">
+        <h2>📜 Community Pledge</h2>
+        <p>One last step before joining the CodeTMC contributor network!</p>
+      </div>
 
-    <div class="form-group">
-      <label class="field-label">What's your current role? <span class="required">*</span></label>
-      <div class="option-group">
-        <label class="option-label">
-          <input type="radio" name="role" value="Instructor / Faculty Member" required>
-          <span>🧑‍🏫 Instructor / Faculty Member</span>
-        </label>
-        <label class="option-label">
-          <input type="radio" name="role" value="Current Student">
-          <span>💻 Current Student</span>
-        </label>
-        <label class="option-label">
-          <input type="radio" name="role" value="IT Professional">
-          <span>🚀 IT Professional</span>
-        </label>
-        <label class="option-label">
-          <input type="radio" name="role" value="Industry Partner">
-          <span>🏢 Industry Partner</span>
-        </label>
-        <label class="option-label">
-          <input type="radio" name="role" value="Community Volunteer">
-          <span>❤️ Community Volunteer</span>
-        </label>
-        <label class="option-label">
-          <input type="radio" name="role" value="Other">
-          <span>✨ Other</span>
+      <div class="form-group">
+        <label class="field-label" for="experience">Projects or Community Experience</label>
+        <textarea id="experience" name="experience" placeholder="Tell us briefly about any past clubs, projects, or community work..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="card-option" style="background: #eff6ff; border-color: #bfdbfe;">
+          <input type="checkbox" id="agreement" name="agreement" required>
+          <div>
+            <span class="option-title">I accept the CodeTMC Community Pledge <span class="required">*</span></span>
+            <span class="option-desc">I understand that joining CodeTMC is voluntary and community-driven. I agree to communicate respectfully and contribute positively.</span>
+          </div>
         </label>
       </div>
     </div>
 
-    <div class="form-group">
-      <label class="field-label">Which areas would you like to contribute to? <span class="required">*</span></label>
-      <div class="option-group">
-        <label class="option-label">
-          <input type="checkbox" name="contribution[]" value="Content & Academics">
-          <span><strong>📚 Content & Academics:</strong> Contributing notes, lab reports, assignments, or verifying resource accuracy.</span>
-        </label>
-        <label class="option-label">
-          <input type="checkbox" name="contribution[]" value="Mentorship & Teaching">
-          <span><strong>🧠 Mentorship & Teaching:</strong> Conducting workshops, bootcamps, or reviewing code for juniors.</span>
-        </label>
-        <label class="option-label">
-          <input type="checkbox" name="contribution[]" value="Technical & Development">
-          <span><strong>🛠️ Technical & Development:</strong> Building/maintaining our website, handling databases, or feature requests.</span>
-        </label>
-        <label class="option-label">
-          <input type="checkbox" name="contribution[]" value="Design & Media">
-          <span><strong>🎨 Design & Media:</strong> Creating banners, graphics, video editing, or managing social media handles.</span>
-        </label>
-        <label class="option-label">
-          <input type="checkbox" name="contribution[]" value="Community & Operations">
-          <span><strong>📢 Community & Operations:</strong> Managing communication groups, organizing events, or handling campus outreach.</span>
-        </label>
-      </div>
+    <!-- Navigation Bar -->
+    <div class="button-nav">
+      <button type="button" class="btn btn-prev" id="prevBtn" style="visibility: hidden;">← Back</button>
+      <button type="button" class="btn btn-next" id="nextBtn">Continue →</button>
+      <button type="submit" class="btn btn-submit" id="submitBtn" style="display: none;">Submit Application 🚀</button>
     </div>
+
+  </form>
+</div>
+
+<!-- Custom Success Modal -->
+<div class="modal-overlay" id="successModal">
+  <div class="modal-card">
+    <div class="modal-icon">🎉</div>
+    <h3>Welcome to CodeTMC!</h3>
+    <p>Your application has been logged into our contributor database. Our team will review your profile and reach out via WhatsApp/Email shortly.</p>
+    <button class="btn btn-next" style="width: 100%; justify-content: center;" onclick="location.reload()">Back to Home</button>
   </div>
+</div>
 
-  <!-- Section 3: Skills & Alignment -->
-  <div class="form-section">
-    <div class="section-title">⚙️ Skills & Alignment</div>
-
-    <div class="form-group">
-      <label class="field-label" for="skills">What specific tools, languages, or skills are you comfortable with? <span class="required">*</span></label>
-      <div class="help-text">e.g., C, HTML/CSS, Git, GIMP, UI/UX Design, Content Writing, Public Speaking, etc.</div>
-      <input type="text" id="skills" name="skills" placeholder="List your key skills..." required>
-    </div>
-
-    <div class="form-group">
-      <label class="field-label" for="motivation">Why do you want to join the CodeTMC movement? <span class="required">*</span></label>
-      <div class="help-text">What gets you excited about making Palpa a tech hub?</div>
-      <textarea id="motivation" name="motivation" placeholder="Share your thoughts..." required></textarea>
-    </div>
-
-    <div class="form-group">
-      <label class="field-label" for="portfolio">Link to your Portfolio / GitHub / LinkedIn</label>
-      <input type="url" id="portfolio" name="portfolio" placeholder="https://github.com/yourusername">
-    </div>
-
-    <div class="form-group">
-      <label class="field-label" for="experience">Tell us about any projects, clubs, communities, or experiences you've worked on.</label>
-      <textarea id="experience" name="experience" placeholder="Briefly describe your previous experience..."></textarea>
-    </div>
-
-    <div class="form-group">
-      <label class="field-label" for="anything_else">Anything else?</label>
-      <input type="text" id="anything_else" name="anything_else" placeholder="Any questions or notes for the team...">
-    </div>
-  </div>
-
-  <!-- Section 4: Agreement -->
-  <div class="form-section">
-    <div class="section-title">📜 Agreement</div>
-
-    <div class="form-group">
-      <label class="option-label" style="background: #eff6ff; border-color: #bfdbfe;">
-        <input type="checkbox" name="agreement" required>
-        <span>I understand that joining CodeTMC is voluntary and community-driven. I agree to communicate respectfully and contribute positively to the community. <span class="required">*</span></span>
-      </label>
-    </div>
-  </div>
-
-  <!-- Submit Button -->
-  <button type="submit" class="btn-submit">Submit Application →</button>
-
-  <div class="form-footer">
-    CodeTMC — Student-Led Educational Initiative
-  </div>
-
-</form>
 <script>
-  const form = document.querySelector('.form-container');
-  const submitBtn = document.querySelector('.btn-submit');
+  let currentStep = 1;
+  const totalSteps = 4;
 
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const submitBtn = document.getElementById('submitBtn');
+  const progressBar = document.getElementById('progressBar');
+  const form = document.getElementById('contributorForm');
+
+  // Script URL for Google Apps Script Web App
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxi5T34Z5IMuc6yjAt02MN0mWk425TyxtMzjliUDEjDU4iHBxYG4fiVdJkYxmiqZ1b7WA/exec';
+
+  // Highlight Card Options when Selected
+  document.querySelectorAll('.card-option input').forEach(input => {
+    input.addEventListener('change', () => {
+      if (input.type === 'radio') {
+        document.querySelectorAll(`input[name="${input.name}"]`).forEach(r => {
+          r.closest('.card-option').classList.remove('selected');
+        });
+      }
+      if (input.checked) {
+        input.closest('.card-option').classList.add('selected');
+      } else {
+        input.closest('.card-option').classList.remove('selected');
+      }
+    });
+  });
+
+  // Step Navigation Logic
+  nextBtn.addEventListener('click', () => {
+    if (validateStep(currentStep)) {
+      currentStep++;
+      updateStepView();
+    }
+  });
+
+  prevBtn.addEventListener('click', () => {
+    currentStep--;
+    updateStepView();
+  });
+
+  function updateStepView() {
+    document.querySelectorAll('.form-step').forEach(step => step.classList.remove('active'));
+    document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.add('active');
+
+    // Update Progress Bar
+    progressBar.style.width = `${(currentStep / totalSteps) * 100}%`;
+
+    // Button States
+    prevBtn.style.visibility = currentStep === 1 ? 'hidden' : 'visible';
+
+    if (currentStep === totalSteps) {
+      nextBtn.style.display = 'none';
+      submitBtn.style.display = 'inline-flex';
+    } else {
+      nextBtn.style.display = 'inline-flex';
+      submitBtn.style.display = 'none';
+    }
+  }
+
+  function validateStep(step) {
+    const currentStepContainer = document.querySelector(`.form-step[data-step="${step}"]`);
+    const inputs = currentStepContainer.querySelectorAll('input[required], textarea[required]');
+
+    for (let input of inputs) {
+      if (!input.checkValidity()) {
+        input.reportValidity();
+        return false;
+      }
+    }
+    return true;
+  }
+
+  // Submit Handler
   form.addEventListener('submit', function(e) {
-    e.preventDefault(); // Stop page reload
-    
+    e.preventDefault();
+
     submitBtn.disabled = true;
-    submitBtn.innerText = 'Submitting Application...';
+    submitBtn.innerText = 'Submitting...';
 
-    // Replace with your copied Google Apps Script Web App URL
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxi5T34Z5IMuc6yjAt02MN0mWk425TyxtMzjliUDEjDU4iHBxYG4fiVdJkYxmiqZ1b7WA/exec';
-
+    // Collect multiple checkbox contributions as a comma-separated string
     const formData = new FormData(form);
+    const contributions = Array.from(document.querySelectorAll('input[name="contribution"]:checked'))
+                                .map(cb => cb.value)
+                                .join(', ');
+    formData.set('contribution', contributions);
 
     fetch(scriptURL, {
       method: 'POST',
       body: formData
     })
     .then(response => {
-      alert('Success! Your application has been submitted to CodeTMC.');
-      form.reset();
-      submitBtn.disabled = false;
-      submitBtn.innerText = 'Submit Application →';
+      document.getElementById('successModal').style.display = 'flex';
     })
     .catch(error => {
       console.error('Error!', error.message);
       alert('Submission failed. Please check your internet connection or try again.');
       submitBtn.disabled = false;
-      submitBtn.innerText = 'Submit Application →';
+      submitBtn.innerText = 'Submit Application 🚀';
     });
   });
 </script>
